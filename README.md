@@ -1,6 +1,6 @@
-# app [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+[![Codeship Status for boennemann/badges](https://img.shields.io/badge/team-9044-red.svg)](http://NERD9044.github.io/)
 
-> My superb app
+> Freshly Baked Pit Scouter 
 
 
 ## Dev

@@ -1,25 +1,22 @@
 <!doctype html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<meta charset="utf-8">
 		<title>Freshly Baked Pit Scouter</title>
 		<link rel="stylesheet" href="index.css">
-	</script>
 	</head>
 
 	<body>
 		
-		<a href="https://github.com/nicolsek/SERTSmash-Freshly-Baked"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-
-		<div class="jumbotron text-center">
-			<div class="container">
-				<h1>Freshly Baked Pit Scouter</h1>
-				<p><small>A simple pit scouter app that allows you to write and read information about a robot in the pit.</small></p>
+		<div class="jumbotron text-center" id="headstuff"> 
+			<div class="container" id="textstuff">
+				<h1 id="bigtext">Freshly Baked Pit Scouter</h1>
+				<p id="smalltext"><small>A simple pit scouter app that allows you to write and read information about a robot in the pit.</small></p>
 			</div>
 		</div>
 
-		<form>
+		<form id="login">
 			<div class="container">	
 				<div class="form-group" style="width: 30%">
 					<label for="inputEmail">Email Address</label>
@@ -28,32 +25,59 @@
 				
 				<div class="form-group" style="width: 30%">
 					<label for="inputPassword">Password</label>
-					<input type="password" class="form-control" placeholder="Password...">
+					<input type="password" class="form-control" id="inputPassword" placeholder="Password...">
 				</div>
 				
 				<div class="inline">
-					<button class="btn btn-primary" onclick="pageLogin();">Login</button>
-					<button class="btn btn-secondary" onclick="pageRegister();">Register</button>
+					<button class="btn btn-primary" id="pageLogin">Login</button> 
+					<button class="btn btn-secondary" id="pageRegister">Register</button> 
 				</div>
 			</div>
 		</form>
+		
+		<div class="container">
+			<div class = "row">
+				<div class = "col-4">
+					<h4 id="welcomeBack"></h4>
+				</div>
+
+				<div class = "col-4">
+					<h4 id="teamRank"></h4>
+				</div>
+
+				<div class = "col-4">
+					<h4 id="emailRef"></h4>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="modal fade" id="setup" tabindex="-1" role="dialog" aria-labelledby="setup" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Setup New Team!</h5>      
+					</div>
+					
+					<div class="modal-body">
+					<form>
+						<label for="inputTeam" class=form-control">Team Number</label>
+						<input type="text" class="form-control" id="inputTeam" placeholder="e.x. #9044...">
+					</form>
+					<div class="modal-footer">
+						<button id="submitName" class="btn btn-primary">Submit!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-		 
+		
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase-app.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase-auth.js"></script>
 		<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase-database.js"></script>
-		<script type="text/javascript" src="main.js"></script> 
-		<script>
-			// Initialize Firebase
-			// TODO: Replace with your project's customized code snippet
-			  var config = {
-			    apiKey: "AIzaSyBYNkGhE41RP5bzmtKuBMryriYfEjZVoo0",
-			    authDomain: "sert-smash-freshly-baked.firebaseapp.com",
-			    databaseURL: "https://sert-smash-freshly-baked.firebaseio.com/",
-			    storageBucket: "gs://sert-smash-freshly-baked.appspot.com",
-			  };
-			  firebase.initializeApp(config);
-		</script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="main.js"></script>
 	</body>
 </html>

@@ -19,6 +19,7 @@ function createMainWindow() {
 
 	win.loadURL(`file://${__dirname}/index.html`);
 	win.on('closed', onClosed);
+	win.maximize();
 	win.setMenu(null);
 	win.webContents.openDevTools();
 
@@ -27,6 +28,7 @@ function createMainWindow() {
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
+		
 		app.quit();
 	}
 });

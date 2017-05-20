@@ -1,9 +1,0 @@
-node_modules
-/dist
-.gitignore.swp
-.index.css.un~
-.index.html.un~
-.index.js.un~
-index.css~
-index.html~
-index.js~

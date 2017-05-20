@@ -1,6 +1,5 @@
 'use strict';
 const electron = require('electron');
-
 const app = electron.app;
 
 // Prevent window being garbage collected
@@ -21,6 +20,7 @@ function createMainWindow() {
 	win.loadURL(`file://${__dirname}/index.html`);
 	win.on('closed', onClosed);
 	win.setMenu(null);
+	win.webContents.openDevTools();
 
 	return win;
 }

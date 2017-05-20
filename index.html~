@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="jumbotron text-center">
 				<h1>Freshly Baked Pit Scouter</h1>
-				<p><small>A simple pit scouter app that allows you to write and read information about a robot in the pit.</small></p>
+				<p>A simple pit scouter app that allows you to write and read information about a robot in the pit.</p>
 			</div>
 		</div>
 	</body>

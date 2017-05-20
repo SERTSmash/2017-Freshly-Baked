@@ -1,7 +1,8 @@
 [![Codeship Status for boennemann/badges](https://img.shields.io/badge/team-9044-red.svg)](http://NERD9044.github.io/)
 
-> Freshly Baked Pit Scouter 
+## Freshly Baked Pit Scouter!
 
+> A pit scouting app made using Electron and a fair amount of coffee.
 
 ## Dev
 

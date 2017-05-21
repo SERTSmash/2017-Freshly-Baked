@@ -112,7 +112,8 @@ function appendData() {
 
 	//Append teams.
 	firebase.database().ref("/users/" + user.uid + "/teams/").once("value").then(function(snapshot) {
-		name = snapshot.val().name;
+		name = snapshot.val();
+		name = name["name"];
 
 		$("#teamsList").append($("<li list-group-item>").text("Team #" + name));
 	});

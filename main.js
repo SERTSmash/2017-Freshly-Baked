@@ -1,6 +1,5 @@
 
 // Initialize Firebase
-// TODO: Replace with your project's customized code snippet
 var config = {
 	apiKey: "AIzaSyBYNkGhE41RP5bzmtKuBMryriYfEjZVoo0",
 	authDomain: "sert-smash-freshly-baked.firebaseapp.com",
@@ -9,8 +8,10 @@ var config = {
 };
 
 var app = firebase.initializeApp(config);
+var database = null;
+var database = firebase.database;
 
-var user;
+var user = null;
 
 $("#pageLogin").click(function(e) {
 	e.preventDefault();
@@ -20,16 +21,13 @@ $("#pageLogin").click(function(e) {
 
 	pageLogin(email, password);
 
-	/* Login Checking */
-	var user = firebase.auth().currentUser;
-
-
-	if (user.displayName == null) {
-		//Show modal setup.
-		$("#setup").modal("show");
+	if (user == null) {
+		user = firebase.auth().currentUser;
 	}
 
-	if (user != null) {
+	if (user.displayName == null) {
+		$("#setup").modal("show");
+	} else {
 		$("#login").remove();
 		animateStart();
 	}
@@ -42,6 +40,7 @@ $("#pageRegister").click(function(e) {
 	password = $("#inputPassword").val();
 
 	pageRegister(email, password);
+	pageLogin(email, password);
 });
 
 $("#submitName").click(function(e) {
@@ -54,6 +53,28 @@ $("#submitName").click(function(e) {
 	});
 
 	$("#setup").modal("hide");
+	$("#setup").remove();
+
+	$("#login").remove();
+	animateStart();
+});
+
+$("#createTeam").click(function(e) {
+	e.preventDefault();
+	
+	$("#setupTeam").modal("show");
+});
+
+$("#submitNewTeam").click(function(e) {
+	e.preventDefault();
+
+	teamName = $("#inputNewTeam").val();
+
+	firebase.database().ref("users/" + user.uid + "/teams/" + teamName).set({
+		name: teamName
+	});
+
+	$("#setupTeam").modal("hide");
 });
 
 function animateStart() {
@@ -79,26 +100,32 @@ function animateStart() {
 			opacity: "0.75"
 		}, "slow");
 
-		appendData();
+		$("#headstuff").promise().done(function() {
+			appendData();
+		});
 	});
 }
 
 function appendData() {
+	firebase.database().ref("users/" + user.uid).set({
+		email: user.email,
+	team: user.displayName
+	});
+	
 	//Append team info.
 	$("#welcomeBack").text("Welcome Back Team #" + user.displayName + "!");
 	$("#emailRef").text("Logged in as " + user.email);
 
-	//Get firebase database.
-	var database = firebase.database();
-
-
+	//Append teams.
+	firebase.database().ref("/users/" + user.uid + "/teams/").once("value").then(function(snapshot) {
+		console.log(snapshot.name);  
+		// ...
+	});
 }
 
 function pageLogin(email, password) {
 	//Login
 	firebase.auth().signInWithEmailAndPassword(email, password);
-
-	user = firebase.auth().currentUser;
 }
 
 function pageRegister(email, password) {

@@ -8,8 +8,7 @@ var config = {
 };
 
 var app = firebase.initializeApp(config);
-var database = null;
-var database = firebase.database;
+var database = firebase.database();
 
 var user = null;
 
@@ -70,8 +69,8 @@ $("#submitNewTeam").click(function(e) {
 
 	teamName = $("#inputNewTeam").val();
 
-	firebase.database().ref("users/" + user.uid + "/teams/" + teamName).set({
-		name: teamName
+	database.ref("users/" + user.uid + "/teams/" + teamName).set({
+		teamID: teamName
 	});
 
 	$("#setupTeam").modal("hide");
@@ -107,19 +106,15 @@ function animateStart() {
 }
 
 function appendData() {
-	firebase.database().ref("users/" + user.uid).set({
-		email: user.email,
-	team: user.displayName
-	});
-	
 	//Append team info.
 	$("#welcomeBack").text("Welcome Back Team #" + user.displayName + "!");
 	$("#emailRef").text("Logged in as " + user.email);
 
 	//Append teams.
 	firebase.database().ref("/users/" + user.uid + "/teams/").once("value").then(function(snapshot) {
-		console.log(snapshot.name);  
-		// ...
+		name = snapshot.val().name;
+
+		$("#teamsList").append($("<li list-group-item>").text("Team #" + name));
 	});
 }
 
